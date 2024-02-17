@@ -1,8 +1,11 @@
 import datetime as dt
 import requests
+from dotenv import load_dotenv
+import os
 
+load_dotenv('.env')
 BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?"
-API_KEY = ""
+API_KEY = os.getenv('API_KEY')
 CITY = input("Enter city: ")
 
 def kelToCF(kelvin):

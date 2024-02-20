@@ -3,11 +3,13 @@ import requests
 from dotenv import load_dotenv
 import os
 from flask import Flask, render_template, request
+from flask_frozen import Freezer
 
 load_dotenv('.env')
 BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?"
 API_KEY = os.getenv('API_KEY')
 app = Flask(__name__)
+freezer = Freezer(app)
 
 # back end
 def kelToCF(kelvin):
@@ -70,4 +72,5 @@ def index():
         return render_template("index.html", city="", tempC="", tempF="", dsc="", sunr="", suns="")
 
 if __name__ == '__main__':
+    freezer.freeze()
     app.run(host="0.0.0.0", port=80)
